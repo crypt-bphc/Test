@@ -1,0 +1,20 @@
+name: test
+
+
+on:
+  workflow_dispatch:
+    inputs:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: test python
+      run: |
+        cat ${GITHUB_WORKSPACE}/config.ini
+        python3 ${GITHUB_WORKSPACE}/gtof.py
+        cat config.ini
+        python3 ${GITHUB_WORKSPACE}/ftog.py
+        cat ${GITHUB_WORKSPACE}/config.ini
