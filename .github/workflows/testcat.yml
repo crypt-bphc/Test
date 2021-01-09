@@ -1,0 +1,21 @@
+name: cat
+
+
+
+
+on:
+  workflow_dispatch:
+    inputs:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install build dependencies
+      run: |
+        cat << EOF >> filename.pem
+        This is text entered via the keyboard or via a script.
+        EOF
+        cat filename.pem
