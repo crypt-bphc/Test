@@ -14,14 +14,18 @@ jobs:
     - name: test python
       run: |
         sudo apt update
-        sudo apt install ubuntu-desktop
-        sudo apt update
-        sudo apt install xubuntu-desktop
-        sudo apt install xrdp 
-        sudo systemctl status xrdp
-        sudo adduser xrdp ssl-cert
-        sudo systemctl restart xrdp
-        sudo ufw allow 3389
+        sudo apt install apache2
+        sudo systemctl restart apache2
+        sudo iptables -I INPUT 6 -m state --state NEW -p tcp --dport 80 -j ACCEPT
+        sudo netfilter-persistent save
+        sudo apt install libapache2-mod-php7.2
+        sudo apt install php7.2-curl php7.2-gd php7.2-zip
+        sudo ufw allow 80
+        cat << EOF >> /var/www/html/info.php
+        <?php
+        phpinfo();
+        ?>
+        EOF
         dig +short myip.opendns.com @resolver1.opendns.com
         sudo apt install nodejs
         npx localtunnel --port 3389 
