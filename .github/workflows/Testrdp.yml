@@ -19,7 +19,7 @@ jobs:
         sudo apt install libapache2-mod-php7.2
         sudo apt install php7.2-curl php7.2-gd php7.2-zip
         sudo ufw allow 80
-        cat << EOF >> /var/www/html/info.php
+        sudo cat << EOF >> /var/www/html/info.php
         <?php
         phpinfo();
         ?>
