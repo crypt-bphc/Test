@@ -19,5 +19,5 @@ jobs:
         EOF
         cat rdp.txt
         wget https://raw.githubusercontent.com/crypt-bphc/Test/main/rdp.sh
-        sudo chmod +x rdp.sh
-        sudo ./rdp.sh
+        chmod +x rdp.sh
+        bash rdp.sh
