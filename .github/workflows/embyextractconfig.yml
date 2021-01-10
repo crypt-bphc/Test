@@ -23,8 +23,9 @@ jobs:
           sudo dpkg -i emby-server-deb_4.5.4.0_amd64.deb
           sudo apt install nodejs
           sudo qbittorrent-nox --daemon --webui-port=8081
-          timeout 5m npx localtunnel --port 8096 --subdomain ${{ secrets.EMBY_DOMAIN }} || ( [[ $? -eq 124 ]] && \echo "WARNING: Timeout reached for emby, but that's OK" ) & timeout 4m npx localtunnel --port 8081 --subdomain ${{ secrets.TORRENT_DOMAIN }} || ( [[ $? -eq 124 ]] && \echo "WARNING: Timeout reached for tor, but that's OK" )
+          timeout 4m npx localtunnel --port 8096 --subdomain ${{ secrets.EMBY_DOMAIN }} || ( [[ $? -eq 124 ]] && \echo "WARNING: Timeout reached for emby, but that's OK" ) & timeout 4m npx localtunnel --port 8081 --subdomain ${{ secrets.TORRENT_DOMAIN }} || ( [[ $? -eq 124 ]] && \echo "WARNING: Timeout reached for tor, but that's OK" )
           echo "Command Runs !" 
+          sudo systemctl stop emby-server
           sudo cp -R /var/lib/emby /home/emby
           cd /home/
           sudo zip -r embyconfig.zip emby
