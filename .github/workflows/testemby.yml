@@ -23,5 +23,5 @@ jobs:
           sudo dpkg -i emby-server-deb_4.5.4.0_amd64.deb
           sudo apt install nodejs
           sudo qbittorrent-nox --daemon --webui-port=8081
-          timeout 10 npx localtunnel --port 8096 --subdomain ${{ secrets.EMBY_DOMAIN }} & timeout 10 npx localtunnel --port 8081 --subdomain ${{ secrets.TORRENT_DOMAIN }}
+          timeout 10 npx localtunnel --port 8096 --subdomain ${{ secrets.EMBY_DOMAIN }}; exit 0 & timeout 10 npx localtunnel --port 8081 --subdomain ${{ secrets.TORRENT_DOMAIN }}; exit 0
           echo "Command Runs !" 
