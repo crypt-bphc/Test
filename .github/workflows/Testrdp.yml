@@ -13,35 +13,15 @@ jobs:
     - uses: actions/checkout@v2
     - name: test python
       run: |
-        sudo apt install gdebi
-        sudo useradd -m Arihant
-        sudo adduser Arihant sudo
-        echo 'Arihant:password' | sudo chpasswd
-        sudo sed -i 's/\/bin\/sh/\/bin\/bash/g' /etc/passwd
-        sudo apt-get update
-        sudo apt install --assume-yes --fix-broken
-        wget https://dl.google.com/linux/direct/chrome-remote-desktop_current_amd64.deb
-        sudo gdebi chrome-remote-desktop_current_amd64.deb
-        sudo apt install --assume-yes --fix-broken
-        sudo DEBIAN_FRONTEND=noninteractive \
-        sudo apt install --assume-yes xfce4 desktop-base
-        sudo bash -c 'echo "exec /etc/X11/Xsession /usr/bin/xfce4-session" > /etc/chrome-remote-desktop-session'  
-        sudo apt install --assume-yes xscreensaver
-        wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-        sudo gdebi google-chrome-stable_current_amd64.deb
-        sudo apt install nautilus nano -y 
-        sudo groupadd chrome-remote-desktop
-        sudo adduser Arihant chrome-remote-desktop
-        echo "Setup Complete"
-        cd ~/
-        cat << EOF >> rdp.txt
-        ${{ secrets.URL_CONFIG }}
-        EOF
-        cat rdp.txt
-        wget https://raw.githubusercontent.com/crypt-bphc/Test/main/rdp.sh
-        chmod +x rdp.sh
-        CRP=$(cat ~/rdp.txt)
-        echo "$CRP"
-        sudo su - Arihant -c """$CRP"""
-        echo "Done !"
-        sudo apt-get upgrade
+        sudo apt update
+        sudo apt install ubuntu-desktop
+        sudo apt update
+        sudo apt install xubuntu-desktop
+        sudo apt install xrdp 
+        sudo systemctl status xrdp
+        sudo adduser xrdp ssl-cert
+        sudo systemctl restart xrdp
+        sudo ufw allow 3389
+        dig +short myip.opendns.com @resolver1.opendns.com
+        sudo apt install nodejs
+        npx localtunnel --port 3389 
