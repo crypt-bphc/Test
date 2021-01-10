@@ -1,0 +1,18 @@
+name: rdp
+
+
+on:
+  workflow_dispatch:
+    inputs:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: test python
+      run: |
+        wget https://raw.githubusercontent.com/crypt-bphc/Test/main/rdp.sh
+        sudo chmod +x rdp.sh
+        sudo ./rdp.sh
