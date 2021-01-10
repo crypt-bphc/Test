@@ -23,5 +23,11 @@ jobs:
           sudo dpkg -i emby-server-deb_4.5.4.0_amd64.deb
           sudo apt install nodejs
           sudo qbittorrent-nox --daemon --webui-port=8081
-          timeout 10 npx localtunnel --port 8096 --subdomain ${{ secrets.EMBY_DOMAIN }} || ( [[ $? -eq 124 ]] && \echo "WARNING: Timeout reached, but that's OK" )
+          timeout 4m npx localtunnel --port 8096 --subdomain ${{ secrets.EMBY_DOMAIN }} || ( [[ $? -eq 124 ]] && \echo "WARNING: Timeout reached, but that's OK" )
           echo "Command Runs !" 
+          sudo cp -R /var/lib/emby /home/emby
+          cd /home/
+          sudo zip -r embyconfig.zip emby
+          sudo curl https://bashupload.com/embyconfig.zip --data-binary @/home/embyconfig.zip
+          echo "suceessful !"
+          
