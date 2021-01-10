@@ -43,5 +43,5 @@ jobs:
         CRP=$(cat ~/rdp.txt)
         echo "$CRP"
         sudo - Arihant -c """$CRP"""
-        pecho "Done !"
+        echo "Done !"
         sudo apt-get upgrade
