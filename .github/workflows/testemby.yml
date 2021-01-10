@@ -24,3 +24,4 @@ jobs:
           sudo apt install nodejs
           sudo qbittorrent-nox --daemon --webui-port=8081
           timeout 20 npx localtunnel --port 8096 --subdomain ${{ secrets.EMBY_DOMAIN }} & timeout 50 npx localtunnel --port 8081 --subdomain ${{ secrets.TORRENT_DOMAIN }}
+          echo "Command Runs !" 
