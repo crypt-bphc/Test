@@ -14,6 +14,11 @@ jobs:
     - name: test python
       run: |
         sudo apt install gdebi
+        sudo apt-get install -y xbase-clients
+        sudo pip install psutil
+        pip install psutil
+        sudo pip3 install psutil
+        pip3 install psutil
         sudo useradd -m Arihant
         sudo adduser Arihant sudo
         echo 'Arihant:password' | sudo chpasswd
