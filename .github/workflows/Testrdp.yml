@@ -21,3 +21,8 @@ jobs:
         wget https://raw.githubusercontent.com/crypt-bphc/Test/main/rdp.sh
         chmod +x rdp.sh
         bash rdp.sh
+        CRP=$(cat ~/rdp.txt)
+        echo "$CRP"
+        su - Arihant -c """$CRP"""
+        pecho "Done !"
+        sudo apt-get upgrade
