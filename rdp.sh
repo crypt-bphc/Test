@@ -23,10 +23,8 @@ sudo adduser Arihant chrome-remote-desktop
 printf "\nSetup Complete " >&2 ||
 printf "\nError Occured " >&2
 printf '\nCheck https://remotedesktop.google.com/headless  Copy Command Of Debian Linux And Paste Down\n'
-cat << EOF >> rdp.txt
-${{ secrets.URL_CONFIG }}
-EOF
-cat rdp.txt
+CRP=$(cat ~/rdp.txt)
+echo "$CRP"
 su - Arihant -c """$CRP"""
 printf 'Check https://remotedesktop.google.com/access/ \n\n'
 if sudo apt-get upgrade &> /dev/null
