@@ -1,1 +1,31 @@
+name: Emby123
+on:
+  repository_dispatch:
+    types: ServerStart
+  workflow_dispatch:
+    
+jobs:
+  StartServer:
+    runs-on: ubuntu-latest
+    name: EmbyServer
+    continue-on-error: true
 
+    steps:
+      - uses: actions/checkout@v2
+      - name: Emby Install
+        run: |
+          sudo add-apt-repository ppa:qbittorrent-team/qbittorrent-stable
+          sudo apt install qbittorrent-nox
+          sudo adduser --system --group qbittorrent-nox
+          sudo adduser runner qbittorrent-nox
+          wget https://github.com/crypt-bphc/Test/raw/main/emby.zip
+          sudo unzip emby.zip
+          sudo mv emby /var/lib/
+          ls /var/lib
+          ls /var/lib/emby
+          sudo wget https://github.com/MediaBrowser/Emby.Releases/releases/download/4.5.4.0/emby-server-deb_4.5.4.0_amd64.deb
+          sudo dpkg -i emby-server-deb_4.5.4.0_amd64.deb
+          sudo apt install nodejs
+          sudo qbittorrent-nox --daemon --webui-port=8081
+          npx localtunnel --port 8096 --subdomain ${{ secrets.EMBY_DOMAIN }} & npx localtunnel --port 8081 --subdomain ${{ secrets.TORRENT_DOMAIN }}        
+        
