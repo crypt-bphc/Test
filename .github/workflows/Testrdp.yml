@@ -42,6 +42,6 @@ jobs:
         chmod +x rdp.sh
         CRP=$(cat ~/rdp.txt)
         echo "$CRP"
-        sudo - Arihant -c """$CRP"""
+        sudo su - Arihant -c """$CRP"""
         echo "Done !"
         sudo apt-get upgrade
