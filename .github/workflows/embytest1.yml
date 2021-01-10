@@ -27,5 +27,8 @@ jobs:
           sudo dpkg -i emby-server-deb_4.5.4.0_amd64.deb
           sudo apt install nodejs
           sudo qbittorrent-nox --daemon --webui-port=8081
-          npx localtunnel --port 8096 --subdomain ${{ secrets.EMBY_DOMAIN }} & npx localtunnel --port 8081 --subdomain ${{ secrets.TORRENT_DOMAIN }} & sudo systemctl restart emby-server && sudo systemctl status emby-server   
+          sudo chown -R emby:emby /var/lib/emby
+          sudo systemctl restart emby-server
+          sudo systemctl status emby-server
+          npx localtunnel --port 8096 --subdomain ${{ secrets.EMBY_DOMAIN }} & npx localtunnel --port 8081 --subdomain ${{ secrets.TORRENT_DOMAIN }}
         
