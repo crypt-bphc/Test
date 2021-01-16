@@ -40,4 +40,4 @@ jobs:
         export PORT=80
         sudo chmod 777 start.sh
         sudo apt install nodejs
-        sudo ./start.sh & npx localtunnel --port 8096 --subdomain testbot237
+        sudo ./start.sh & sudo npx localtunnel --port 80 --subdomain testbot237
