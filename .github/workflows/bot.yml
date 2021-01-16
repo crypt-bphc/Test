@@ -29,15 +29,15 @@ jobs:
         sudo add-apt-repository -y ppa:qbittorrent-team/qbittorrent-stable
         sudo apt install -y qbittorrent-nox
         sudo -u postgres bash
-        createdb tortk
-        psql
-        ALTER USER postgres with password 'testpass';
+        sudo createdb tortk
+        sudo psql
+        sudo ALTER USER postgres with password 'testpass';
         exit
         exit
         sudo cat << EOF >> TorToolkit-Telegram/tortoolkit/consts/ExecVarsSample.py
         ${{ secrets.BOT_CONF }}
         EOF
         export PORT=5432
-        chmod 777 start.sh
+        sudo chmod 777 start.sh
         sudo apt install nodejs
-        ./start.sh & npx localtunnel --port 8096 --subdomain testbot237
+        sudo ./start.sh & npx localtunnel --port 8096 --subdomain testbot237
