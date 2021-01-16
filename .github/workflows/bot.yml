@@ -1,0 +1,42 @@
+name: bot
+
+
+on:
+  workflow_dispatch:
+    inputs:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: test python
+      run: |
+        git clone https://github.com/yash-dk/TorToolkit-Telegram.git
+        sudo apt update
+        sudo apt install -y python3.8
+        sudo apt install -y python3-venv
+        python3 -m venv venv
+        source venv/bin/activate
+        cd TorToolkit-Telegram
+        pip install -r requirements.txt
+        sudo apt install -y postgresql postgresql-contrib
+        apt -qq install -y curl git wget python3 python3-pip aria2 ffmpeg mediainfo unzip p7zip-full p7zip-rar
+        curl https://rclone.org/install.sh | bash
+        apt-get install -y software-properties-common
+        apt-get -y update
+        add-apt-repository -y ppa:qbittorrent-team/qbittorrent-stable
+        apt install -y qbittorrent-nox
+        sudo -u postgres bash
+        createdb tortk
+        psql
+        ALTER USER postgres with password 'testpass';
+        exit
+        exit
+        sudo cat << EOF >> TorToolkit-Telegram/tortoolkit/consts/ExecVarsSample.py
+        ${{ secrets.BOT_CONF }}
+        EOF
+        export PORT=80
+        chmod 777 start.sh
+        ./start.sh
