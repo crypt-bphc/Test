@@ -17,10 +17,10 @@ jobs:
         sudo apt update
         sudo apt install -y python3.8
         sudo apt install -y python3-venv
-        python3 -m venv venv
-        source venv/bin/activate
+        sudo python3 -m venv venv
+        sudo source venv/bin/activate
         cd TorToolkit-Telegram
-        pip install -r requirements.txt
+        sudo pip3 install -r requirements.txt
         sudo apt install -y postgresql postgresql-contrib
         sudo apt -qq install -y curl git wget python3 python3-pip aria2 ffmpeg mediainfo unzip p7zip-full p7zip-rar
         curl https://rclone.org/install.sh | sudo bash
@@ -37,7 +37,7 @@ jobs:
         sudo cat << EOF >> TorToolkit-Telegram/tortoolkit/consts/ExecVarsSample.py
         ${{ secrets.BOT_CONF }}
         EOF
-        export PORT=80
+        sudo export PORT=80
         sudo chmod 777 start.sh
         sudo apt install nodejs
         sudo ./start.sh & sudo npx localtunnel --port 80 --subdomain testbot237
