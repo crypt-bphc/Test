@@ -33,7 +33,6 @@ jobs:
         sudo add-apt-repository -y ppa:qbittorrent-team/qbittorrent-stable
         sudo apt install -y qbittorrent-nox
         sudo systemctl --global start postgresql
-        sudo -u postgres bash
         sudo -u postgres createdb tortk
         sudo -u postgres psql
         sudo ALTER USER postgres with password 'testpass';
