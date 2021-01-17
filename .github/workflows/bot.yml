@@ -38,7 +38,7 @@ jobs:
         sudo cat << EOF >> TorToolkit-Telegram/tortoolkit/consts/ExecVarsSample.py
         ${{ secrets.BOT_CONF }}
         EOF
-        sudo export PORT=80
+        sudo export PORT=5432
         sudo chmod 777 start.sh
         sudo apt install nodejs
-        sudo ./start.sh & sudo npx localtunnel --port 80 --subdomain testbot237
+        sudo ./start.sh & sudo npx localtunnel --port 5432 --subdomain testbot237
