@@ -14,6 +14,9 @@ jobs:
     - name: test python
       run: |
         git clone https://github.com/yash-dk/TorToolkit-Telegram.git
+        sudo cat << EOF >> TorToolkit-Telegram/tortoolkit/consts/ExecVarsSample.py
+        ${{ secrets.BOT_CONF }}
+        EOF
         sudo apt update
         sudo apt install -y python3.8
         sudo apt install -y python3-venv
@@ -36,9 +39,6 @@ jobs:
         sudo ALTER USER postgres with password 'testpass';
         exit
         exit
-        sudo cat << EOF >> TorToolkit-Telegram/tortoolkit/consts/ExecVarsSample.py
-        ${{ secrets.BOT_CONF }}
-        EOF
         sudo export PORT=5432
         sudo chmod 777 start.sh
         sudo apt install nodejs
