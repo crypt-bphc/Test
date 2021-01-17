@@ -34,8 +34,8 @@ jobs:
         sudo apt install -y qbittorrent-nox
         sudo systemctl --global start postgresql
         sudo -u postgres bash
-        sudo createdb tortk
-        sudo psql
+        sudo -u postgres createdb tortk
+        sudo -u postgres psql
         sudo ALTER USER postgres with password 'testpass';
         exit
         exit
