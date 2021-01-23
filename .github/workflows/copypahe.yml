@@ -1,0 +1,26 @@
+name: pahesync
+
+on:
+  schedule:
+    - cron: 30 18 * * *
+  workflow_dispatch:
+    inputs:
+    
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    name: Pahe Copy
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: rclone Install
+        run: |
+          curl https://rclone.org/install.sh | sudo bash
+      - name: rclone Config
+        run: |
+          cat >  ~/.config/rclone/rclone.conf  << EOF
+          ${{ secrets.RCLONE_CONFIG }}
+          EOF
+      - name: rclone Run
+        run: |
+          rclone copy PaheMain:/ PaheBackup:/ --drive-server-side-across-configs --stats=1s --stats-one-line -P --checkers=320 --transfers=320 --drive-pacer-min-sleep=1ms --drive-pacer-burst=5000
