@@ -15,12 +15,6 @@ jobs:
         run: |
           curl https://rclone.org/install.sh | sudo bash
           mkdir -p ~/.config/rclone
-          sudo add-apt-repository ppa:qbittorrent-team/qbittorrent-stable
-          sudo apt install qbittorrent-nox
-          sudo adduser --system --group qbittorrent-nox
-          sudo adduser runner qbittorrent-nox
-          sudo apt install nodejs
-          sudo qbittorrent-nox --daemon --webui-port=8081
       - name: rclone Config
         run: |
           cat >  ~/.config/rclone/rclone.conf  << EOF
@@ -31,4 +25,5 @@ jobs:
           cd /home/runner/
           mkdir rclonemount
           cd ../../..
-          rclone mount PaheMain: /home/runner/rclonemount --allow-non-empty --cache-db-purge --buffer-size 32M --use-mmap --dir-cache-time 4h --drive-chunk-size 16M  --timeout 1h  --vfs-cache-mode minimal --vfs-read-chunk-size 128M --vfs-read-chunk-size-limit 1G --fast-list &  ls /home/runner/rclonemount & ls /home/runner/rclonemount & ls /home/runner/rclonemount & ls /home/runner/rclonemount & ls /home/runner/rclonemount & ls /home/runner/ & npx localtunnel --port 8081 --subdomain testingari123
+          sudo apt install nodejs
+          rclone mount PaheMain: /home/runner/rclonemount --allow-non-empty --cache-db-purge --buffer-size 32M --use-mmap --dir-cache-time 4h --drive-chunk-size 16M  --timeout 1h  --vfs-cache-mode minimal --vfs-read-chunk-size 128M --vfs-read-chunk-size-limit 1G --fast-list &  ls /home/runner/rclonemount & ls /home/runner/rclonemount & ls /home/runner/rclonemount & ls /home/runner/rclonemount & ls /home/runner/rclonemount & ls /home/runner/ & sudo python -m SimpleHTTPServer 8000 & npx localtunnel --port 8000 --subdomain testingari123 
