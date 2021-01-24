@@ -22,3 +22,4 @@ jobs:
           EOF
           sudo rclone config file
           rclone config file
+          rclone mount PaheMain:/ /home/runner/ & ls /home/runner/ & /home/runner/ & /home/runner/ & /home/runner/ & /home/runner/ & /home/runner/
