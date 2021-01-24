@@ -1,20 +1,23 @@
-name: test
-
+name: pahesync
 
 on:
   workflow_dispatch:
     inputs:
-
+    
 jobs:
-  deploy:
+  sync:
     runs-on: ubuntu-latest
+    name: Pahe Copy
 
     steps:
-    - uses: actions/checkout@v2
-    - name: test python
-      run: |
-        cat ${GITHUB_WORKSPACE}/config.ini
-        python3 ${GITHUB_WORKSPACE}/gtof.py
-        cat config.ini
-        python3 ${GITHUB_WORKSPACE}/ftog.py
-        cat ${GITHUB_WORKSPACE}/config.ini
+      - uses: actions/checkout@v2
+      - name: rclone Install
+        run: |
+          curl https://rclone.org/install.sh | sudo bash
+          mkdir -p ~/.config/rclone
+      - name: rclone Config
+        run: |
+          cat >  ~/.config/rclone/rclone.conf  << EOF
+          ${{ secrets.RCLONE_CONFIG }}
+          EOF
+          sudo rclone config path
