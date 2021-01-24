@@ -21,3 +21,4 @@ jobs:
           ${{ secrets.RCLONE_CONFIG }}
           EOF
           sudo rclone config file
+          rclone config file
