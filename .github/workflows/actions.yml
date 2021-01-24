@@ -1,29 +1,42 @@
-name: rclonemount
-
+name: Emby123
 on:
+  repository_dispatch:
+    types: ServerStart
   workflow_dispatch:
-    inputs:
     
 jobs:
-  sync:
+  StartServer:
     runs-on: ubuntu-latest
-    name: Pahe Copy
+    name: EmbyServer
+    continue-on-error: true
 
     steps:
       - uses: actions/checkout@v2
-      - name: rclone Install
+      - name: Emby Install
         run: |
           curl https://rclone.org/install.sh | sudo bash
           mkdir -p ~/.config/rclone
-      - name: rclone Config
-        run: |
+          sudo add-apt-repository ppa:qbittorrent-team/qbittorrent-stable
+          sudo apt install qbittorrent-nox
+          sudo adduser --system --group qbittorrent-nox
+          sudo adduser runner qbittorrent-nox
           cat >  ~/.config/rclone/rclone.conf  << EOF
           ${{ secrets.RCLONE_CONFIG }}
           EOF
-          sudo rclone config file
-          rclone config file
           cd /home/runner/
           mkdir rclonemount
           cd ../../..
+          wget https://github.com/crypt-bphc/Test/raw/main/emby.zip
+          sudo unzip emby.zip
+          sudo mv emby /var/lib/
+          ls /var/lib
+          ls /var/lib/emby
+          sudo wget https://github.com/MediaBrowser/Emby.Releases/releases/download/4.5.4.0/emby-server-deb_4.5.4.0_amd64.deb
+          sudo dpkg -i emby-server-deb_4.5.4.0_amd64.deb
           sudo apt install nodejs
-          sudo rclone mount PaheMain: /home/runner/rclonemount --allow-non-empty --allow-other --cache-db-purge --buffer-size 32M --use-mmap --dir-cache-time 4h --drive-chunk-size 16M  --timeout 1h  --vfs-cache-mode minimal --vfs-read-chunk-size 128M --vfs-read-chunk-size-limit 1G --fast-list & python -m SimpleHTTPServer 8000 & npx localtunnel --port 8000 --subdomain testingari123 
+          sudo qbittorrent-nox --daemon --webui-port=8081
+          sudo chown -R emby:emby /var/lib/emby
+          sudo systemctl restart emby-server
+          sudo systemctl status emby-server
+          npx localtunnel --port 8096 --subdomain testariemby & npx localtunnel --port 8081 --subdomain testaritor & sudo rclone mount PaheMain: /home/runner/rclonemount --allow-non-empty --allow-other --cache-db-purge --buffer-size 32M --use-mmap --dir-cache-time 4h --drive-chunk-size 16M  --timeout 1h  --vfs-cache-mode minimal --vfs-read-chunk-size 128M --vfs-read-chunk-size-limit 1G --fast-list
+        
