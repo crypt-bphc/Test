@@ -18,12 +18,6 @@ jobs:
           sudo apt install qbittorrent-nox
           sudo adduser --system --group qbittorrent-nox
           sudo adduser runner qbittorrent-nox
-          cd home/runner/
-          sudo wget https://github.com/crypt-bphc/Test/raw/main/emby.zip
-          sudo unzip emby.zip
-          sudo mv emby /var/lib/
-          ls /var/lib
-          ls /var/lib/emby
           sudo wget https://github.com/MediaBrowser/Emby.Releases/releases/download/4.5.4.0/emby-server-deb_4.5.4.0_amd64.deb
           sudo dpkg -i emby-server-deb_4.5.4.0_amd64.deb
           sudo apt install nodejs
