@@ -20,4 +20,4 @@ jobs:
           cat >  ~/.config/rclone/rclone.conf  << EOF
           ${{ secrets.RCLONE_CONFIG }}
           EOF
-          sudo rclone config path
+          sudo rclone config file
