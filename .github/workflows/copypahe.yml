@@ -22,4 +22,4 @@ jobs:
           EOF
       - name: rclone Run
         run: |
-          rclone copy "PaheMain:/Pahe Movies" PaheBackup:/ --drive-server-side-across-configs --stats=1s --stats-one-line -P --checkers=320 --transfers=320 --drive-pacer-min-sleep=1ms --drive-pacer-burst=5000
+          rclone copy "PaheMain:/Pahe Movies" "PaheBackup:/Pahe Movies" --drive-server-side-across-configs --stats=1s --stats-one-line -P --checkers=320 --transfers=320 --drive-pacer-min-sleep=1ms --drive-pacer-burst=5000
