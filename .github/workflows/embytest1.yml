@@ -18,7 +18,7 @@ jobs:
           sudo apt install qbittorrent-nox
           sudo adduser --system --group qbittorrent-nox
           sudo adduser runner qbittorrent-nox
-          wget https://github.com/crypt-bphc/Test/raw/main/emby.zip
+          sudo wget https://github.com/crypt-bphc/Test/raw/main/emby.zip
           sudo unzip emby.zip
           sudo mv emby /var/lib/
           ls /var/lib
