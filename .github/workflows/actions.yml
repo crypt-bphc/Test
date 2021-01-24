@@ -1,4 +1,4 @@
-name: pahesync
+name: rclonemount
 
 on:
   workflow_dispatch:
