@@ -3,6 +3,8 @@ name: pahesync
 on:
   workflow_dispatch:
     inputs:
+  schedule:
+    - cron: '0 0 * * *'  # every day at midnight
     
 jobs:
   sync:
