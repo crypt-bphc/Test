@@ -17,6 +17,6 @@ jobs:
           sudo apt install nodejs
           wget https://storage.googleapis.com/bysh-chef-files/olaris-release/olaris-linux-amd64-v0.3.3.zip
           sudo unzip olaris-linux-amd64-v0.3.3.zip -d /opt/olaris
-          chmod +x /opt/olaris/bin/olaris
+          sudo chmod +x /opt/olaris/bin/olaris
           ./opt/olaris/bin/olaris
           npx localtunnel --port 8080
