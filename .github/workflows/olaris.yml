@@ -14,7 +14,4 @@ jobs:
       - uses: actions/checkout@v2
       - name: Olaris Install
         run: |
-          sudo apt install nodejs
-          wget https://storage.googleapis.com/bysh-chef-files/olaris-release/olaris-linux-amd64-v0.3.3.zip
-          sudo unzip olaris-linux-amd64-v0.3.3.zip -d /opt/olaris
-          npx localtunnel --port 8080
+          ls ~/.config/systemd/
