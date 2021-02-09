@@ -12,6 +12,15 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - name: rclone Install
+        run: |
+          curl https://rclone.org/install.sh | sudo bash
+          mkdir -p ~/.config/rclone
+      - name: rclone Config
+        run: |
+          cat >  ~/.config/rclone/rclone.conf  << EOF
+          ${{ secrets.RCLONE_CONFIG }}
+          EOF
       - name: Olaris Install
         run: |
           sudo apt install nodejs
