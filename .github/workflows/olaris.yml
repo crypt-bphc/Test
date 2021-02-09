@@ -21,7 +21,6 @@ jobs:
           echo "Step 1"
           sudo cp /opt/olaris/doc/config-examples/systemd/olaris.service ~/.config/systemd/user/
           echo "Step 2"
-          systemctl --user daemon-reload
           echo "Step 3"
           systemctl --user start olaris.service
           echo "Step 4"
