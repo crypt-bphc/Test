@@ -14,4 +14,15 @@ jobs:
       - uses: actions/checkout@v2
       - name: Olaris Install
         run: |
-          ls ~/.config/systemd/
+          sudo apt install nodejs
+          wget https://storage.googleapis.com/bysh-chef-files/olaris-release/olaris-linux-amd64-v0.3.3.zip
+          sudo unzip olaris-linux-amd64-v0.3.3.zip -d /opt/olaris
+          sudo mkdir -p ~/.config/systemd/user/
+          echo "Step 1"
+          sudo cp /opt/olaris/doc/config-examples/systemd/olaris.service ~/.config/systemd/user/
+          echo "Step 2"
+          systemctl --user daemon-reload
+          echo "Step 3"
+          systemctl --user start olaris.service
+          echo "Step 4"
+          npx localtunnel --port 8080
