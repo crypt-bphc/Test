@@ -30,4 +30,4 @@ jobs:
           sudo chmod -R ugo+rw /home/runner/
           sudo systemctl restart jellyfin
           sudo systemctl status jellyfin
-          npx localtunnel --port 8096 --subdomain ${{ secrets.JELLYFIN_DOMAIN }} & npx localtunnel --port 8081 --subdomain ${{ secrets.TORRENT_DOMAIN }}
+          npx localtunnel --port 8096 --subdomain jellyfingithub & npx localtunnel --port 8081 --subdomain qbitgithub
