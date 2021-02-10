@@ -1,4 +1,4 @@
-name: StartServer
+name: Jellyfinconfig
 
 on:
   repository_dispatch:
