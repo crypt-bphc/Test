@@ -29,9 +29,11 @@ jobs:
           sudo apt install jellyfin
           sudo chmod -R 755 /home/runner/
           sudo chown -R jellyfin:jellyfin /var/lib/jellyfin
-          sudo systemctl restart jellyfin
           sudo apt install nodejs
           sudo qbittorrent-nox --daemon --webui-port=8081
+          sudo cat >  /etc/jellyfin/system.xml  << EOF
+          ${{ secrets.JELLYFIN_XML }}
+          EOF
+          sudo systemctl restart jellyfin
           sudo systemctl status jellyfin
-          sudo cat /etc/jellyfin/system.xml
           npx localtunnel --port 8096 --subdomain ${{ secrets.JELLYFIN_DOMAIN }} & npx localtunnel --port 8081 --subdomain ${{ secrets.JELLYTORRENT_DOMAIN }}
