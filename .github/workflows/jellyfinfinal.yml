@@ -32,9 +32,11 @@ jobs:
           sudo systemctl stop jellyfin
           sudo apt install nodejs
           sudo qbittorrent-nox --daemon --webui-port=8081
-          sudo cat >  /etc/jellyfin/system.xml  << EOF
+          sudo cat >  /home/system.xml  << EOF
           ${{ secrets.JELLYFIN_XML }}
           EOF
+          sudo rm /etc/jellyfin/system.xml
+          sudo mv /home/system.xml /etc/jellyfin/
           sudo systemctl restart jellyfin
           sudo systemctl status jellyfin
           npx localtunnel --port 8096 --subdomain ${{ secrets.JELLYFIN_DOMAIN }} & npx localtunnel --port 8081 --subdomain ${{ secrets.JELLYTORRENT_DOMAIN }}
