@@ -18,7 +18,6 @@ jobs:
           sudo apt install qbittorrent-nox
           sudo adduser --system --group qbittorrent-nox
           sudo adduser runner qbittorrent-nox
-          sudo rm /etc/apt/sources.list.d/jellyfin.list
           sudo apt install apt-transport-https
           sudo add-apt-repository universe
           wget -O - https://repo.jellyfin.org/ubuntu/jellyfin_team.gpg.key | sudo apt-key add -
