@@ -37,6 +37,7 @@ jobs:
           EOF
           sudo rm /etc/jellyfin/system.xml
           sudo mv /home/runner/system.xml /etc/jellyfin/
+          sudo chown -R jellyfin:jellyfin /etc/jellyfin/
           sudo systemctl restart jellyfin
           sudo systemctl status jellyfin
           npx localtunnel --port 8096 --subdomain ${{ secrets.JELLYFIN_DOMAIN }} & npx localtunnel --port 8081 --subdomain ${{ secrets.JELLYTORRENT_DOMAIN }}
