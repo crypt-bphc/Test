@@ -21,6 +21,7 @@ jobs:
           sudo wget https://github.com/crypt-bphc/Test/raw/main/jellyfin.zip
           sudo unzip jellyfin.zip
           sudo mv jellyfin /var/lib/
+          sudo chown -R jellyfin:jellyfin /var/lib/jellyfin
           ls /var/lib
           ls /var/lib/jellyfin
           sudo apt install apt-transport-https
