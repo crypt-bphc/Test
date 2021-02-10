@@ -1,0 +1,34 @@
+name: Jellyfin
+on:
+  repository_dispatch:
+    types: ServerStart
+  workflow_dispatch:
+    
+jobs:
+  StartServer:
+    runs-on: ubuntu-latest
+    name: JellyfinServer
+    continue-on-error: true
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Jellyfin Install
+        run: |
+          sudo add-apt-repository ppa:qbittorrent-team/qbittorrent-stable
+          sudo apt install qbittorrent-nox
+          sudo adduser --system --group qbittorrent-nox
+          sudo adduser runner qbittorrent-nox
+          sudo rm /etc/apt/sources.list.d/jellyfin.list
+          sudo apt install apt-transport-https
+          sudo add-apt-repository universe
+          wget -O - https://repo.jellyfin.org/ubuntu/jellyfin_team.gpg.key | sudo apt-key add -
+          echo "deb [arch=$( dpkg --print-architecture )] https://repo.jellyfin.org/ubuntu $( lsb_release -c -s ) main" | sudo tee /etc/apt/sources.list.d/jellyfin.list
+          sudo apt update
+          sudo apt install jellyfin
+          sudo systemctl restart jellyfin
+          sudo apt install nodejs
+          sudo qbittorrent-nox --daemon --webui-port=8081
+          sudo chmod -R ugo+rw /home/runner/
+          sudo systemctl restart jellyfin
+          sudo systemctl status jellyfin
+          npx localtunnel --port 8096 --subdomain ${{ secrets.JELLYFIN_DOMAIN }} & npx localtunnel --port 8081 --subdomain ${{ secrets.TORRENT_DOMAIN }}
