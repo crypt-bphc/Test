@@ -1,1 +1,19 @@
+name: shellbot
 
+
+on:
+  workflow_dispatch:
+    inputs:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: shell bot
+      run: |
+        sudo apt install -y make python build-essential
+        git clone https://github.com/botgram/shell-bot.git && cd shell-bot
+        npm install
+        node server
