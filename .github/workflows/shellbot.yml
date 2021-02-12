@@ -20,7 +20,8 @@ jobs:
         gunzip gclone_1.51.0-mod1.3.1_Linux_x86_64.gz
         mv gclone_1.51.0-mod1.3.1_Linux_x86_64 gclone
         chmod +x gclone
-        export PATH=$PATH:/home/runner/gclone/gclone
+        PATH="$PATH:/home/runner/gclone/gclone"
+        export PATH
         cd ..
         gclone --help
         git clone https://github.com/botgram/shell-bot.git && cd shell-bot
