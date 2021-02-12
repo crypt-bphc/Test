@@ -17,6 +17,7 @@ jobs:
         wget -qO- https://git.io/gclone.sh
         chmod +x gclone.sh
         sudo ./gclone.sh
+        rm gclone.sh
         git clone https://github.com/botgram/shell-bot.git && cd shell-bot
         mv config.example.json config.json
         cat >  config.json  << EOF
