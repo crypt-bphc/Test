@@ -14,16 +14,9 @@ jobs:
     - name: shell bot
       run: |
         sudo apt install -y make python build-essential
-        mkdir /home/runner/gclone
-        cd /home/runner/gclone
-        wget https://github.com/donwa/gclone/releases/download/v1.51.0-mod1.3.1/gclone_1.51.0-mod1.3.1_Linux_x86_64.gz
-        gunzip gclone_1.51.0-mod1.3.1_Linux_x86_64.gz
-        mv gclone_1.51.0-mod1.3.1_Linux_x86_64 gclone
-        chmod +x gclone
-        PATH="$PATH:/home/runner/gclone/gclone"
-        export PATH
-        cd ..
-        gclone --help
+        wget -qO- https://git.io/gclone.sh
+        chmod +x gclone.sh
+        sudo ./gclone.sh
         git clone https://github.com/botgram/shell-bot.git && cd shell-bot
         mv config.example.json config.json
         cat >  config.json  << EOF
