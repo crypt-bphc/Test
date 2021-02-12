@@ -19,7 +19,9 @@ jobs:
         wget https://github.com/donwa/gclone/releases/download/v1.51.0-mod1.3.1/gclone_1.51.0-mod1.3.1_Linux_x86_64.gz
         gunzip gclone_1.51.0-mod1.3.1_Linux_x86_64.gz
         mv gclone_1.51.0-mod1.3.1_Linux_x86_64 gclone
+        chmod +x gclone
         export PATH=$PATH:/home/runner/gclone/gclone
+        cd ..
         gclone --help
         git clone https://github.com/botgram/shell-bot.git && cd shell-bot
         mv config.example.json config.json
