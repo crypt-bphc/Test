@@ -25,8 +25,7 @@ jobs:
           EOF
       - name: Olaris Install
         run: |
-          wget https://bin.equinox.io/c/VdrWdbjqyF/cloudflared-stable-linux-amd64.deb
-          sudo dpkg -i cloudflared-stable-linux-amd64.deb
+          sudo apt install nodejs
           wget https://storage.googleapis.com/bysh-chef-files/olaris-release/olaris-linux-amd64-v0.3.3.zip
           sudo unzip olaris-linux-amd64-v0.3.3.zip -d /opt/olaris
           mkdir -p ~/.config/olaris
@@ -35,4 +34,4 @@ jobs:
           EOF
           cd /opt/olaris/bin/
           sudo chmod +x olaris
-          ./olaris > output.txt & sudo cloudflared tunnel --url localhost:8080
+          ./olaris > output.txt & npx localtunnel --port 8080
