@@ -35,4 +35,4 @@ jobs:
           EOF
           cd /opt/olaris/bin/
           sudo chmod +x olaris
-          ./olaris & cloudflared tunnel --url localhost:8080
+          ./olaris > output.txt & cloudflared tunnel --url localhost:8080
