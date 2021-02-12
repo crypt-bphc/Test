@@ -34,4 +34,4 @@ jobs:
           EOF
           cd /opt/olaris/bin/
           sudo chmod +x olaris
-          ./olaris > output.txt & npx localtunnel --port 8078 --subdomain olarismedia
+          ./olaris > /home/runner/olarisoutput.txt & npx localtunnel --port 8078 --subdomain olarismedia
