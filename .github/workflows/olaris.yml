@@ -1,7 +1,5 @@
 name: olaris
 on:
-  schedule:
-    - cron: '0 */6 * * *'
   repository_dispatch:
     types: ServerStart
   workflow_dispatch:
